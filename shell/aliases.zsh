@@ -63,6 +63,15 @@ alias zshrc='nvim "$DOTFILES/shell/zshrc"'
 alias brewup='brew update && brew upgrade && brew cleanup'
 alias brewdeps='brew bundle --file="$DOTFILES/Brewfile"'
 
+# ── On-demand services (kept off to save memory) ───────
+alias svc='brew services list'
+alias pgstart='brew services start postgresql@18'
+alias pgstop='brew services stop postgresql@18'
+alias redisstart='brew services start redis'
+alias redisstop='brew services stop redis'
+alias dockerstart='colima start'
+alias dockerstop='colima stop'
+
 # ── macOS Finder helpers ───────────────────────────────
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'

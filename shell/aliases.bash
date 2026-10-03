@@ -43,6 +43,19 @@ alias tmuxreload='source ~/.tmux.conf'
 alias bashreload='source ~/.bashrc'
 alias dotfiles='cd "$DOTFILES"'
 
+# ── Homebrew ───────────────────────────────────────────
+alias brewup='brew update && brew upgrade && brew cleanup'
+alias brewdeps='brew bundle --file="$DOTFILES/Brewfile"'
+
+# ── On-demand services (kept off to save memory) ───────
+alias svc='brew services list'
+alias pgstart='brew services start postgresql@18'
+alias pgstop='brew services stop postgresql@18'
+alias redisstart='brew services start redis'
+alias redisstop='brew services stop redis'
+alias dockerstart='colima start'
+alias dockerstop='colima stop'
+
 # ── Editor shortcuts ───────────────────────────────────
 alias vim=nvim
 alias vi=nvim

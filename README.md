@@ -115,6 +115,24 @@ with `./macos/defaults.sh --dry-run`.
 **Neovim** – the NvChad v2.5 config from the old repo, minus a broken symlink
 that pointed at `/home/blake/dotfiles/nvim` on the Linux box.
 
+## Services (on demand)
+
+Nothing here is configured to start at login — databases, the container VM and
+clusters are started only when you need them, to keep memory free. Handy
+aliases: `pgstart`/`pgstop`, `redisstart`/`redisstop`,
+`dockerstart`/`dockerstop`, and `svc` (= `brew services list`).
+
+| Need | Start | Stop |
+|---|---|---|
+| PostgreSQL 18 | `brew services start postgresql@18` | `brew services stop postgresql@18` |
+| Redis | `brew services start redis` | `brew services stop redis` |
+| Container VM (colima) | `colima start` | `colima stop` |
+| Kubernetes (kind) | `kind create cluster` | `kind delete cluster` |
+
+`brew services stop` unregisters the launch agent as well as stopping it, so a
+service you stop stays off across reboots. `install.sh --brew` only installs
+packages; it never starts a service.
+
 ## Local overrides & secrets
 
 Machine-specific settings go in files that are gitignored:
