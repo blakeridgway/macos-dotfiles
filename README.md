@@ -82,9 +82,27 @@ or dirty the repo. Cargo and the Docker CLI path are handled in `zshrc` instead.
 diff, `zdiff3` merge conflicts, `rerere`, and a few short aliases (`gs`, `gl`,
 `co`, `undo`). The work identity is included only under `~/dev/AdvancedMetrics/`.
 
-**Homebrew** – the `Brewfile` is the source of truth. It includes the CLI tools
-the configs expect (tmux, neovim, oh-my-posh, fzf, zoxide, direnv, mise, eza,
-bat, fd, ripgrep, btop) plus what was already installed. Refresh it with:
+**Homebrew** – the `Brewfile` is the source of truth and is aimed at
+**DevSecOps/SRE + Ruby on Rails**, with **Rust and Go** toolchains. Broadly:
+
+- *Shell/dev:* tmux, neovim, oh-my-posh, the zsh plugins, fzf, zoxide, direnv,
+  mise, git, gh, ripgrep, fd, bat, eza, btop, jq, yq
+- *Runtimes:* Go (+ golangci-lint, delve, gopls, staticcheck), Rust
+  (+ rust-analyzer, cargo-audit/deny/nextest/watch). **Ruby is managed by
+  mise**, not brew; the `Ruby on Rails` block is the native build/runtime deps
+  (postgresql@18, redis, libpq, vips, imagemagick, openssl, libyaml, …).
+- *Cloud/IaC (AWS):* awscli, aws-vault, ansible(+lint), opentofu, terragrunt,
+  packer, tflint, checkov
+- *Kubernetes/SRE:* kubernetes-cli, kubectx, k9s, helm, kustomize, stern, kind,
+  kubeseal, mtr, iperf3
+- *Supply-chain security:* trivy, grype, syft, cosign
+- *Secrets/leaks:* sops, age, gitleaks, gnupg
+- *CI & load testing:* act, k6, hey, vegeta
+- *Containers:* **colima + docker/docker-compose/buildx** (replaces the broken
+  Docker Desktop cask), plus podman/podman-compose and dive
+
+`packer` and `tflint` come from third-party taps and are marked
+`trusted: true`. Refresh the file from the current machine with:
 
 ```bash
 brew bundle dump --force --file=Brewfile

@@ -1,14 +1,16 @@
 # ---------------------------------------------------------------------------
-# Brewfile - `brew bundle` installs everything below.
-#   install.sh --brew      # install/upgrade from this file
+# Brewfile - DevSecOps / SRE + Ruby on Rails (+ Rust & Go)
+#
+#   ./install.sh --brew                        # install/upgrade from this file
 #   brew bundle dump --force --file=Brewfile   # refresh from the current machine
 #
-# This is the authoritative list for this Mac. Tools the shell/nvim/tmux
-# configs expect (tmux, neovim, oh-my-posh, fzf, zoxide, ...) are included so
-# a fresh machine is usable after one `brew bundle`.
+# Ruby itself is managed by mise (see config/mise/config.toml), not brew; the
+# packages listed under "Ruby on Rails" are the native build/runtime deps.
 # ---------------------------------------------------------------------------
 
 tap "anomalyco/tap"
+tap "hashicorp/tap"
+tap "terraform-linters/tap"
 
 # ── Shell & prompt ─────────────────────────────────────
 brew "tmux"
@@ -23,14 +25,20 @@ brew "mise"
 
 # ── CLI essentials ─────────────────────────────────────
 brew "git"
+brew "git-delta"
+brew "gh"
 brew "ripgrep"
 brew "fd"
 brew "bat"
 brew "eza"
 brew "btop"
 brew "jq"
+brew "yq"
 brew "tree"
 brew "wget"
+brew "httpie"
+brew "watch"
+brew "gnupg"
 
 # ── Languages & runtimes ───────────────────────────────
 brew "node"
@@ -38,32 +46,93 @@ brew "python@3.13"
 brew "rust"
 brew "go"
 
-# ── Cloud / IaC / DevOps ───────────────────────────────
-brew "ansible"
-brew "awscli"
-brew "kubernetes-cli"
-brew "kubectx"
-brew "opentofu"
+# ── Go tooling ─────────────────────────────────────────
+brew "golangci-lint"
+brew "delve"
+brew "gopls"
+brew "staticcheck"
 
-# ── Containers & databases ─────────────────────────────
-brew "podman"
-brew "podman-compose"
-brew "postgresql@18", link: true
+# ── Rust tooling ───────────────────────────────────────
+brew "rust-analyzer"
+brew "cargo-audit"
+brew "cargo-deny"
+brew "cargo-nextest"
+brew "cargo-watch"
 
-# ── Networking / security ──────────────────────────────
-brew "nmap"
-brew "mtr"
-
-# ── Libraries (Homebrew deps) ──────────────────────────
-brew "openssl@3", link: true
+# ── Ruby on Rails ──────────────────────────────────────
+# Ruby via mise; these are the native deps gems build against.
+brew "redis"
+brew "libpq"
+brew "vips"
+brew "imagemagick"
+brew "shared-mime-info"
+brew "pkg-config"
+brew "autoconf"
+brew "openssl@3"
 brew "libyaml"
 brew "gmp"
+brew "readline"
+brew "overmind"
+
+# ── Databases ──────────────────────────────────────────
+brew "postgresql@18", link: true
+
+# ── Containers ─────────────────────────────────────────
+brew "colima"
+brew "docker"
+brew "docker-compose"
+brew "docker-buildx"
+brew "dive"
+brew "podman"
+brew "podman-compose"
+
+# ── Cloud & IaC (AWS) ──────────────────────────────────
+brew "awscli"
+brew "aws-vault"
+brew "ansible"
+brew "ansible-lint"
+brew "opentofu"
+brew "terragrunt"
+brew "hashicorp/tap/packer", trusted: true
+cask "terraform-linters/tap/tflint", trusted: true
+brew "checkov"
+
+# ── Kubernetes & SRE ───────────────────────────────────
+brew "kubernetes-cli"
+brew "kubectx"
+brew "k9s"
+brew "helm"
+brew "kustomize"
+brew "stern"
+brew "kind"
+brew "kubeseal"
+brew "mtr"
+brew "iperf3"
+
+# ── Supply-chain security ──────────────────────────────
+brew "trivy"
+brew "grype"
+brew "syft"
+brew "cosign"
+
+# ── Secrets & leak detection ───────────────────────────
+brew "sops"
+brew "age"
+brew "gitleaks"
+
+# ── CI & load testing ──────────────────────────────────
+brew "act"
+brew "k6"
+brew "hey"
+brew "vegeta"
+
+# ── Networking ─────────────────────────────────────────
+brew "nmap"
 
 # ── AI coding agent ────────────────────────────────────
 brew "anomalyco/tap/opencode-v2", trusted: true
 
 # ── GUI apps ───────────────────────────────────────────
-cask "docker-desktop"
 cask "wireshark-app"
 cask "gns3"
 
