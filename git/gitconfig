@@ -1,0 +1,50 @@
+# Global git configuration.
+# Paths use ~/.dotfiles, a stable symlink to this repo created by install.sh,
+# so this file keeps working wherever the repo is cloned.
+[user]
+	name = Blake Ridgway
+	email = blake@blakeridgway.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim +14 -c +startinsert
+	excludesfile = ~/.gitignore
+	pager = less -FRX
+
+[commit]
+	template = ~/.dotfiles/git/commit-conventions.txt
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[merge]
+	conflictstyle = zdiff3
+
+[rerere]
+	enabled = true
+
+[fetch]
+	prune = true
+
+[rebase]
+	autosquash = true
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch
+	lg = log --oneline --graph --decorate
+	undo = reset --soft HEAD~1
+
+# Work identity for AdvancedMetrics repositories
+[includeIf "gitdir:~/dev/AdvancedMetrics/"]
+	path = ~/.dotfiles/git/gitconfig-advancedmetrics

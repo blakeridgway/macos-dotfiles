@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# ~/.bashrc  ->  dotfiles/shell/bashrc
+# macOS ships bash 3.2, so keep this POSIX-ish. Aliases live in aliases.bash.
+# Not sourced by login shells on macOS; see the note in README.md.
+# ---------------------------------------------------------------------------
+
+# If not running interactively, don't do anything
+case $- in
+  *i*) ;;
+    *) return ;;
+esac
+
+export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
+
+# ── Homebrew ───────────────────────────────────────────
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH"
+
+# ── Editor ─────────────────────────────────────────────
+export EDITOR="${EDITOR:-nvim}"
+export VISUAL="${VISUAL:-$EDITOR}"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+export CPLUS_INCLUDE_PATH="/opt/homebrew/include:/usr/local/include"
+
+# ── NVM (optional) ─────────────────────────────────────
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# ── Rust / Cargo ───────────────────────────────────────
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# ── SSH agent ──────────────────────────────────────────
+if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent >/dev/null 2>&1; then
+  eval "$(ssh-agent -s)" >/dev/null
+  ssh-add --apple-use-keychain 2>/dev/null
+fi
+
+# ── Secrets (keep this file chmod 600 if you create it) ─
+[ -f "$HOME/.secrets" ] && . "$HOME/.secrets"
+
+# ── FZF / prompt / aliases (optional) ──────────────────
+[ -f "$HOME/.fzf.bash" ] && . "$HOME/.fzf.bash"
+command -v oh-my-posh >/dev/null 2>&1 && \
+  eval "$(oh-my-posh init bash --config "$DOTFILES/config/oh-my-posh/theme.omp.json")"
+[ -f "$DOTFILES/shell/aliases.bash" ] && . "$DOTFILES/shell/aliases.bash"
+[ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"

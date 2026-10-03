@@ -1,0 +1,6 @@
+[user]
+	email = blake.ridgway@ametrics.org
+	name = Blake Ridgway
+
+#[core]
+#	sshCommand = ssh -i ~/.ssh/id_rsa_ametrics -o IdentitiesOnly=yes
