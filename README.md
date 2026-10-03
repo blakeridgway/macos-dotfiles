@@ -11,7 +11,7 @@ things into `$HOME`; no framework to learn.
 ## Quick start
 
 ```bash
-git clone <this-repo> ~/dev/Personal/macos_dotfiles   # already here
+git clone git@github.com:blakeridgway/macos-dotfiles.git ~/dev/Personal/macos_dotfiles
 cd ~/dev/Personal/macos_dotfiles
 ./install.sh --dry-run     # see exactly what would happen
 ./install.sh               # symlink the dotfiles into $HOME
