@@ -83,8 +83,6 @@ brew "docker"
 brew "docker-compose"
 brew "docker-buildx"
 brew "dive"
-brew "podman"
-brew "podman-compose"
 
 # ── Cloud & IaC (AWS) ──────────────────────────────────
 brew "awscli"

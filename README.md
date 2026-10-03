@@ -99,7 +99,7 @@ diff, `zdiff3` merge conflicts, `rerere`, and a few short aliases (`gs`, `gl`,
 - *Secrets/leaks:* sops, age, gitleaks, gnupg
 - *CI & load testing:* act, k6, hey, vegeta
 - *Containers:* **colima + docker/docker-compose/buildx** (replaces the broken
-  Docker Desktop cask), plus podman/podman-compose and dive
+  Docker Desktop cask) and dive
 
 `packer` and `tflint` come from third-party taps and are marked
 `trusted: true`. Refresh the file from the current machine with:
