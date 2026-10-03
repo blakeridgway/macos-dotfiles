@@ -14,6 +14,8 @@ tap "anomalyco/tap"
 brew "tmux"
 brew "neovim"
 brew "oh-my-posh"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 brew "fzf"
 brew "zoxide"
 brew "direnv"
@@ -64,6 +66,9 @@ brew "anomalyco/tap/opencode-v2", trusted: true
 cask "docker-desktop"
 cask "wireshark-app"
 cask "gns3"
+
+# ── Fonts ──────────────────────────────────────────────
+cask "font-hack-nerd-font"
 
 # ── Cargo binaries ─────────────────────────────────────
 cargo "loco"

@@ -39,7 +39,7 @@ never deleted. A real directory is never replaced by a symlink.
 | `terminal/tmux.conf` | `~/.tmux.conf` | self-explanatory tmux (mouse, big scrollback) |
 | `terminal/nushell/` | `~/.config/nushell` | nushell config |
 | `nvim/` | `~/.config/nvim` | Neovim (NvChad v2.5 + lazy.nvim) |
-| `config/oh-my-posh/theme.omp.json` | `~/.config/oh-my-posh/theme.omp.json` | prompt theme |
+| `config/oh-my-posh/theme.omp.json` | `~/.config/oh-my-posh/theme.omp.json` | active prompt theme (catppuccin_mocha) |
 | `config/mise/config.toml` | `~/.config/mise/config.toml` | mise tool versions |
 | `Brewfile` | – | Homebrew packages and apps |
 | `macos/defaults.sh` | – | optional macOS `defaults write` tweaks |
@@ -55,7 +55,16 @@ hardcoded clone path.)
 **Shell** – plain zsh, no oh-my-zsh. Homebrew's `shellenv`, a 100k-entry shared
 history, `compinit`, and guarded hooks for `mise`, `direnv`, `zoxide` and
 `fzf`. Every optional tool is behind `command -v`, so the config works before
-Homebrew has installed anything. The prompt is [oh-my-posh](https://ohmyposh.dev).
+Homebrew has installed anything.
+
+**Prompt & theme** – [oh-my-posh](https://ohmyposh.dev) with the
+`catppuccin_mocha` theme (`config/oh-my-posh/theme.omp.json`; the theme that
+was salvaged from the old repo is kept as `custom.omp.json`). The prompt needs
+a Nerd Font for its glyphs: install `font-hack-nerd-font` (in the `Brewfile`)
+and select **Hack Nerd Font** in your terminal profile (iTerm2:
+*Settings → Profiles → Text → Font*). [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+are loaded too — the latter last, as it requires.
 
 `.zprofile` and `.zshenv` are **not** managed here: Docker Desktop and rustup
 rewrite them on their own, and symlinking them would either fight those tools
