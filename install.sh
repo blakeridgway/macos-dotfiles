@@ -118,6 +118,7 @@ MAP=(
   "nvim|.config/nvim"
   "config/oh-my-posh/theme.omp.json|.config/oh-my-posh/theme.omp.json"
   "config/mise/config.toml|.config/mise/config.toml"
+  "config/iterm2/catppuccin-mocha.json|Library/Application Support/iTerm2/DynamicProfiles/catppuccin-mocha.json"
 )
 
 for entry in "${MAP[@]}"; do

@@ -41,6 +41,7 @@ never deleted. A real directory is never replaced by a symlink.
 | `nvim/` | `~/.config/nvim` | Neovim (NvChad v2.5 + lazy.nvim) |
 | `config/oh-my-posh/theme.omp.json` | `~/.config/oh-my-posh/theme.omp.json` | active prompt theme (catppuccin_mocha) |
 | `config/mise/config.toml` | `~/.config/mise/config.toml` | mise tool versions |
+| `config/iterm2/catppuccin-mocha.json` | `~/Library/Application Support/iTerm2/DynamicProfiles/catppuccin-mocha.json` | iTerm2 dynamic profile (Catppuccin Mocha + Nerd Font) |
 | `Brewfile` | – | Homebrew packages and apps |
 | `macos/defaults.sh` | – | optional macOS `defaults write` tweaks |
 | `ssh/config.example` | – | starter SSH config (copy to `~/.ssh/config`) |
@@ -65,6 +66,13 @@ and select **Hack Nerd Font** in your terminal profile (iTerm2:
 *Settings → Profiles → Text → Font*). [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 are loaded too — the latter last, as it requires.
+
+**iTerm2** – `config/iterm2/catppuccin-mocha.json` is an iTerm2 *dynamic profile*
+that inherits your `Default` profile, applies the official Catppuccin Mocha
+colors, and sets `HackNFM-Regular 14`. `install.sh` symlinks it into iTerm2's
+`DynamicProfiles` folder; iTerm2 reloads it live. To make it the one used for
+new windows: *Settings → Profiles → Catppuccin Mocha → Other Actions → Set as
+Default*.
 
 `.zprofile` and `.zshenv` are **not** managed here: Docker Desktop and rustup
 rewrite them on their own, and symlinking them would either fight those tools
